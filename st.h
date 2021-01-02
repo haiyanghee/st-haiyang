@@ -1,5 +1,7 @@
 /* See LICENSE for license details. */
 
+// clang-format off
+
 #include <stdint.h>
 #include <sys/types.h>
 
@@ -81,6 +83,7 @@ void die(const char *, ...);
 void redraw(void);
 void draw(void);
 
+void newterm(const Arg *);
 void printscreen(const Arg *);
 void printsel(const Arg *);
 void sendbreak(const Arg *);
