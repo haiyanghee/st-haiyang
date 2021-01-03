@@ -706,8 +706,9 @@ brelease(XEvent *e)
 
 	if (mouseaction(e, 1))
 		return;
-	if (e->xbutton.button == Button1)
-		mousesel(e, 1);
+    //comment this out if you want mouse selection to copy the terminal text...
+	//if (e->xbutton.button == Button1)
+		//mousesel(e, 1);
 }
 
 void
