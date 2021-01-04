@@ -197,6 +197,7 @@ static uint forcemousemod = ShiftMask;
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
+#define ALTTERMMOD (Mod1Mask|ShiftMask)
 
 const unsigned int mousescrollincrement = 5;
 static MouseShortcut mshortcuts[] = {
@@ -212,6 +213,9 @@ static MouseShortcut mshortcuts[] = {
  	//{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
+static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe", NULL };
+static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
+static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
@@ -229,12 +233,12 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ TERMMOD,              XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ TERMMOD,              XK_Page_Down,   kscrolldown,    {.i = -1} },
-    { ControlMask,               XK_k,           kscrollup,      {.i =  1} },
-	{ ControlMask,               XK_j,           kscrolldown,    {.i =  1} },
-	{ ControlMask,               XK_Up,          kscrollup,      {.i =  1} },
-	{ ControlMask,               XK_Down,        kscrolldown,    {.i =  1} },
-	{ ControlMask,               XK_u,           kscrollup,      {.i = -1} },
-	{ ControlMask,               XK_d,           kscrolldown,    {.i = -1} },
+    { MODKEY,               XK_k,           kscrollup,      {.i =  1} },
+	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
+	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
+	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+	{ ALTTERMMOD,               XK_U,           kscrollup,      {.i = -1} },//alt-d will overload deletion in bash..
+	{ ALTTERMMOD,               XK_D,           kscrolldown,    {.i = -1} },
 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
@@ -244,6 +248,9 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+    { MODKEY,               XK_u,           externalpipe,   {.v = openurlcmd } },
+	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
+	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
 };
 
 /*
