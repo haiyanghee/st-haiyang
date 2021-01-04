@@ -686,8 +686,8 @@ setsel(char *str, Time t)
 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
 		selclear();
+    //clipcopy(NULL);
 
-	xclipcopy();
 }
 
 void
@@ -704,10 +704,12 @@ brelease(XEvent *e)
 		return;
 	}
 
-	if (mouseaction(e, 1))
-		return;
-    //comment this out if you want mouse selection to copy the terminal text...
-	//if (e->xbutton.button == Button1)
+	//if (mouseaction(e, 1))
+		//return;
+    if (e->xbutton.button == Button2)
+		selpaste(NULL);
+	if (e->xbutton.button == Button1)
+		mousesel(e, 1);
 		//mousesel(e, 1);
 }
 
