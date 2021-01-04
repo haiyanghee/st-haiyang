@@ -2,6 +2,13 @@
 
 To apply patch, do `patch -p1 < patchHere`.
 
+# This patch is based on `vim browse` patch
+It requires some work to make the patch working (I put the `normalMode.c` into `st.c` because these files depend on each other apparently).
+- It works very well
+- You cannot scroll using the scrollback patch anymore (there is probably a patch for vim browse that handles it but I'm too lazy to repatch it, it takes lots of time)
+    - Thus you can ***only*** scroll using the normal mode
+This patch is good if you want to copy paste very specific things in terminal.. but I think I don't need that very often, since I could just copy paste the output in the terminal to vim and go from there..
+
 # Patches installed
 - alpha
 - anysize
@@ -18,13 +25,6 @@ To apply patch, do `patch -p1 < patchHere`.
 - clipboard
 - workingdir
 - font2 (to see colored emojies, please install **`libxft-bgra`**, which is a fix for libxft colored emoji rendering problem. It is available from the [AUR](https://aur.archlinux.org/packages/libxft-bgra/))
-
-# Small changes
-- By default st will copy your selection of text in the terminal, so if you do not want this, in `x.c` and function `void brelease(XEvent *e)` you can comment out the part ( which is what I did)
-    ```
-    if (e->xbutton.button == Button1)
-    mousesel(e, 1);
-    ```
 
 # TODO
 - The buffer often does not refresh if applies the `scroll` program.. but if doesn't use `scroll` then the lines does not resize properly (will result in line cut off) when resized.. Did not find a good solution for this yet.

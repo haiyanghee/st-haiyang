@@ -2806,8 +2806,8 @@ draw(void)
 
 	if (histMode) historyPreDraw();
 	drawregion(0, 0, term.col, term.row);
-	//if (term.scr == 0|| !histMode) //TODO added "!histMode" by myself here.. hopefully doesn't break things
-	if (!histMode) //TODO added "!histMode" by myself here.. hopefully doesn't break things
+	if (term.scr == 0|| !histMode) //TODO added "!histMode" by myself here.. hopefully doesn't break things
+	//if (!histMode) //TODO added "!histMode" by myself here.. hopefully doesn't break things
 		xdrawcursor(cx, term.c.y, term.line[term.c.y][cx],
 				term.ocx, term.ocy, term.line[term.ocy][term.ocx]);
 	term.ocx = cx;

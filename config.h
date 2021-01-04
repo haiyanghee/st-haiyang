@@ -133,6 +133,7 @@ static const char *colorname[] = {
   /* special colors */
   [256] = "#282a36", /* background */
   [257] = "#f8f8f2", /* foreground */
+  [258] = "#3D3F4A", /* vim hist cursor color */
 };
 
 
@@ -146,9 +147,9 @@ static unsigned int defaultcs = 257;
 static unsigned int defaultrcs = 257;
 
 //vim browse stuff
-unsigned int const currentBg = 6, buffSize = 2048;
+unsigned int const currentBg = 258, buffSize = 2048;
 /// [Vim Browse] Colors for search results currently on screen.
-unsigned int const highlightBg = 160, highlightFg = 15;
+unsigned int const highlightBg = 4, highlightFg = 258;
 char const wDelS[] = "!\"#$%&'()*+,-./:;<=>?@[\\]^`{|}~", wDelL[] = " \t";
 char *nmKeys [] = {              ///< Shortcusts executed in normal mode
   "R/Building\nN", "r/Building\n", "X/juli@machine\nN", "x/juli@machine\n",
@@ -216,8 +217,8 @@ static MouseShortcut mshortcuts[] = {
 	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = mousescrollincrement},       0,/* !alt */  },
 	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = mousescrollincrement},       0,/* !alt */  },
     { XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
- 	//{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
- 	//{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+ 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+ 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
