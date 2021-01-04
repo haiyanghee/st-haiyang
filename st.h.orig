@@ -5,16 +5,11 @@
 #include <stdint.h>
 #include <sys/types.h>
 
-#include "utils.h"
-#include <X11/keysym.h>
-#include <X11/XKBlib.h>
-
 /* macros */
 #define MIN(a, b)		((a) < (b) ? (a) : (b))
 #define MAX(a, b)		((a) < (b) ? (b) : (a))
 #define LEN(a)			(sizeof(a) / sizeof(a)[0])
 #define BETWEEN(x, a, b)	((a) <= (x) && (x) <= (b))
-#define OUT(x, a, b)		((a) <= (x) || (x) <= (b))
 #define DIVCEIL(n, d)		(((n) + ((d) - 1)) / (d))
 #define DEFAULT(a, b)		(a) = (a) ? (a) : (b)
 #define LIMIT(x, a, b)		(x) = (x) < (a) ? (a) : (x) > (b) ? (b) : (x)
@@ -135,14 +130,3 @@ extern unsigned int tabspaces;
 extern unsigned int defaultfg;
 extern unsigned int defaultbg;
 extern float alpha;
-
-
-//normalmode stuff
-void normalMode();
-void historyPreDraw();
-void historyOverlay(int x, int y, Glyph* g);
-void historyModeToggle(int start);
-/// Handles keys in normal mode.
-typedef enum {failed=0, succ=1, exitMotion=2, exitOp=3, finished=4} ExitState;
-ExitState kpressHist(char const *txt, int len, int ctrl, KeySym const *kSym);
-//normalmode stuff end
