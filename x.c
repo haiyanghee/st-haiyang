@@ -710,7 +710,6 @@ brelease(XEvent *e)
 		selpaste(NULL);
 	if (e->xbutton.button == Button1)
 		mousesel(e, 1);
-		//mousesel(e, 1);
 }
 
 void
