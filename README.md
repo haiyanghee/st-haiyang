@@ -21,6 +21,7 @@ To install, run `sudo make clean install`.
 - workingdir
 - font2 (to see colored emojies, please install **`libxft-bgra`**, which is a fix for libxft colored emoji rendering problem. It is available from the [AUR](https://aur.archlinux.org/packages/libxft-bgra/))
 - externalpipe (plus copying urls and output that [Luke](https://github.com/LukeSmithxyz/st) made with [video](https://www.youtube.com/watch?v=5E9bO5ZURcs&ab_channel=LukeSmith))
+- xresources (allows customization of st parameters on the fly with xresources) 
 
 
 # TODO
