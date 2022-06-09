@@ -1,5 +1,8 @@
 # st
 
+**Note:** This `st` setup assumes you have **`libxft-bgra`** installed, which is a fix for `libxft` colored emoji rendering problem. It is available from the [AUR](https://aur.archlinux.org/packages/libxft-bgra/). You can also do this for `dmenu`. Luke has a detailed [tutorial](https://www.youtube.com/watch?v=0QkByBugq_4).
+
+
 To apply patch, do `patch -p1 < patchHere`.
 
 To install, run `sudo make clean install`.
@@ -10,7 +13,7 @@ To install, run `sudo make clean install`.
 - delkey
 - newterm (no need)
 - dracula
-- scroll
+- scroll (not used anymore)
     - scroll can resize st screen
     - disable the shortcuts for scrolling in scroll, use the patch scrollback instead!!
 - scrollback
