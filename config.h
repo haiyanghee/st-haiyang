@@ -109,26 +109,25 @@ float alpha = 0.86;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-  /* 8 normal colors */
-  [0] = "#000000", /* black   */
-  [1] = "#ff5555", /* red     */
-  [2] = "#50fa7b", /* green   */
-  [3] = "#f1fa8c", /* yellow  */
-  [4] = "#bd93f9", /* blue    */
-  [5] = "#ff79c6", /* magenta */
-  [6] = "#8be9fd", /* cyan    */
-  [7] = "#bbbbbb", /* white   */
-
-  /* 8 bright colors */
-  [8]  = "#44475a", /* black   */
-  //[9]  = "#ff5555", /* red     */
-  [9]  = "#ff6668", /* red     */
-  [10] = "#50fa7b", /* green   */
-  [11] = "#f1fa8c", /* yellow  */
-  [12] = "#bd93f9", /* blue    */
-  [13] = "#ff79c6", /* magenta */
-  [14] = "#8be9fd", /* cyan    */
-  [15] = "#ffffff", /* white   */
+    /* 8 normal colors */
+    [0] = "#000000", /* black   */
+    [1] = "#ff5555", /* red     */
+    [2] = "#50fa7b", /* green   */
+    [3] = "#f1fa8c", /* yellow  */
+    [4] = "#bd93f9", /* blue    */
+    [5] = "#ff79c6", /* magenta */
+    [6] = "#8be9fd", /* cyan    */
+    [7] = "#bbbbbb", /* white   */
+                                  
+    /* 8 bright colors */
+    [8]  = "#44475a", /* black   */
+    [9]  = "#ff5555", /* red     */
+    [10] = "#50fa7b", /* green   */
+    [11] = "#f1fa8c", /* yellow  */
+    [12] = "#bd93f9", /* blue    */
+    [13] = "#ff79c6", /* magenta */
+    [14] = "#8be9fd", /* cyan    */
+    [15] = "#ffffff", /* white   */
 
   /* special colors */
   [256] = "#282a36", /* background */
@@ -254,37 +253,54 @@ static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe
 static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
 static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
 
+// keysymdef located in:
+//`/usr/include/X11/keysymdef.h`
+
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+    //copy paste
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
     //{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
+    //scroll up a full page with page up and down
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ TERMMOD,              XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ TERMMOD,              XK_Page_Down,   kscrolldown,    {.i = -1} },
+    //use f and b to scroll up and down a full page
+	{ ALTTERMMOD,               XK_B,           kscrollup,      {.i = -1} },//alt-d will overload deletion in bash..
+	{ ALTTERMMOD,               XK_F,           kscrolldown,    {.i = -1} },
+    //j and k to scroll up and down
     { ALTTERMMOD,               XK_K,           kscrollup,      {.i =  1} },
 	{ ALTTERMMOD,               XK_J,           kscrolldown,    {.i =  1} },
+    //use arrow key to scroll up
 	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
 	{ ALTTERMMOD,               XK_U,           kscrollup,      {.i = -1} },//alt-d will overload deletion in bash..
 	{ ALTTERMMOD,               XK_D,           kscrolldown,    {.i = -1} },
+    //some zooming
 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
     { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
+    //use j and k, or + and - to zoom
 	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
+	{ TERMMOD,              XK_plus,           zoom,           {.f = +1} },
+	{ TERMMOD,              XK_underscore,           zoom,           {.f = -1} },
+	//{ TERMMOD,              XK_minus,           zoom,           {.f = -1} }, //since TERMMOD is defined as ctrl-shift, minus won't work
+    //use u and d to zoom a bit faster
 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+    //external scripts that I sometimes use (not sure if it works super well ...)
     { MODKEY,               XK_u,           externalpipe,   {.v = openurlcmd } },
 	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
 	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
