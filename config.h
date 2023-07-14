@@ -301,9 +301,9 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
     //external scripts that I sometimes use (not sure if it works super well ...)
-    { MODKEY,               XK_u,           externalpipe,   {.v = openurlcmd } },
-	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+    //{ MODKEY,               XK_u,           externalpipe,   {.v = openurlcmd } },
+	//{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
+	//{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
 };
 
 /*
