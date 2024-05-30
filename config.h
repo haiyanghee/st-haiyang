@@ -277,9 +277,9 @@ static Shortcut shortcuts[] = {
     //use f and b to scroll up and down a full page
 	{ ALTTERMMOD,               XK_B,           kscrollup,      {.i = -1} },//alt-d will overload deletion in bash..
 	{ ALTTERMMOD,               XK_F,           kscrolldown,    {.i = -1} },
-    //j and k to scroll up and down
-    { ALTTERMMOD,               XK_K,           kscrollup,      {.i =  1} },
-	{ ALTTERMMOD,               XK_J,           kscrolldown,    {.i =  1} },
+    ////j and k to scroll up and down
+    { TERMMOD,               XK_K,           kscrollup,      {.i =  1} },
+	{ TERMMOD,               XK_J,           kscrolldown,    {.i =  1} },
     //use arrow key to scroll up
 	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
@@ -291,15 +291,15 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
     { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
-    //use j and k, or + and - to zoom
-	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
-	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
+    //use + and - to zoom
+	//{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
+	//{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
 	{ TERMMOD,              XK_plus,           zoom,           {.f = +1} },
 	{ TERMMOD,              XK_underscore,           zoom,           {.f = -1} },
 	//{ TERMMOD,              XK_minus,           zoom,           {.f = -1} }, //since TERMMOD is defined as ctrl-shift, minus won't work
-    //use u and d to zoom a bit faster
-	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
-	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+    ////use u and d to zoom a bit faster
+	//{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
+	//{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
     //external scripts that I sometimes use (not sure if it works super well ...)
     //{ MODKEY,               XK_u,           externalpipe,   {.v = openurlcmd } },
 	//{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
